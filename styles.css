@@ -102,6 +102,7 @@ margin: 1vh 0 1vh 1vw;
 #tipSelectors > div:hover{
     color: hsl(183, 100%, 15%);
     background-color: hsl(172, 67%, 45%);
+    border: 1px solid hsl(172, 67%, 45%);
 }
 
 #resultWindowContent{
@@ -111,8 +112,11 @@ margin: 1vh 0 1vh 1vw;
 
 input{
     text-align: right;
-    border: transparent;
+    border: 1px solid hsl(189, 41%, 97%);
     background-color: hsl(189, 41%, 97%)
+}
+input:hover{
+    border: 1px solid hsl(172, 67%, 45%);
 }
 
 #resultWindowContent{
