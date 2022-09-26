@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,86 +23,75 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <h2>SPLITTER</h2>
+    <img src="./images/logo.svg" alt="logo splitter" id="logoMain" />
     <div id="calculator">
       <div id="calculatorContent">
         <div id="formWindow">
           <form action="calculTip" method="post">
-            <div id="bill">
-              <label for="billAmount">Bill</label>
+            <fieldset id="bill">
+              <legend>Bill</legend>
               <input
                 type="number"
                 name="bill"
                 id="billAmount"
                 placeholder="0"
+                style="
+                  background-image: url(./images/icon-dollar.svg);
+                  background-repeat: no-repeat;
+                "
+                class="notCustomInput"
               />
-            </div>
-            <div id="tipSelect">
-              <label for="tipValue">Select Tip %</label>
-              <input
-                type="button"
-                name="tip"
-                id="tip"
-                value="5%"
-                class="leftSelector"
-              />
-              <input
-                type="button"
-                name="tip"
-                value="10%"
-                class="rightSelector"
-              />
-              <input
-                type="button"
-                name="tip"
-                value="15%"
-                class="leftSelector"
-              />
-              <input
-                type="button"
-                name="tip"
-                value="20%"
-                class="rightSelector"
-              />
-              <input
-                type="button"
-                name="tip"
-                value="50%"
-                class="leftSelector"
-              />
-              <input
-                class="rightSelector"
-                type="text"
-                name="tip"
-                id="customTip"
-                placeholder="Custom"
-              />
-            </div>
-            <div>
-              <label for="peopleQty">Number of People</label>
+            </fieldset>
+
+            <fieldset id="tipSelect">
+              <legend>Select Tip %</legend>
+              <div id="inputContainer">
+                <input type="button" name="tip" id="tip" value="5%" />
+                <input type="button" name="tip" value="10%" />
+                <input type="button" name="tip" value="15%" />
+                <input type="button" name="tip" value="20%" />
+                <input type="button" name="tip" value="50%" />
+                <input
+                  type="number"
+                  name="tip"
+                  id="customTip"
+                  placeholder="Custom"
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Number of People</legend>
+
               <input
                 type="number"
                 name="peopleQty"
                 id="peopleQty"
                 placeholder="0"
+                style="
+                  background-image: url(./images/icon-person.svg);
+                  background-repeat: no-repeat;
+                "
+                class="notCustomInput"
               />
-            </div>
+            </fieldset>
           </form>
         </div>
 
         <div id="resultWindow">
           <div id="resultWindowContent">
-            <div>
-              Tip Amount <br />
-              / person
+            <div id="display">
+              <div>
+                <span class="title">Tip Amount</span> <br />
+                <span class="sub">/ person</span>
+              </div>
+              <div id="tipAmount" class="amount">$3.25</div>
+              <div>
+                <span class="title">Total/</span> <br />
+                <span class="sub">person</span>
+              </div>
+              <div id="totalAmount" class="amount">$12.03</div>
             </div>
-            <div id="tipAmount">$3.25</div>
-            <div>
-              Total/ <br />
-              person
-            </div>
-            <div id="totalAmount">$12.03</div>
-            <button>RESET</button>
+            <button id="resetButton">RESET</button>
           </div>
         </div>
       </div>
