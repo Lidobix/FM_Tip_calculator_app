@@ -46,11 +46,46 @@
             <fieldset id="tipSelect">
               <legend>Select Tip %</legend>
               <div id="inputContainer">
-                <input type="button" name="tip" id="tip" value="5%" />
-                <input type="button" name="tip" value="10%" />
-                <input type="button" name="tip" value="15%" />
-                <input type="button" name="tip" value="20%" />
-                <input type="button" name="tip" value="50%" />
+                <input
+                  type="button"
+                  class="tipUnClicked"
+                  name="tip"
+                  id="tip5"
+                  value="5%"
+                  onclick="selectTips(5, 'tip5')"
+                />
+                <input
+                  type="button"
+                  class="tipUnClicked"
+                  name="tip"
+                  id="tip10"
+                  value="10%"
+                  onclick="selectTips(10)"
+                />
+                <input
+                  type="button"
+                  class="tipUnClicked"
+                  name="tip"
+                  id="tip15"
+                  value="15%"
+                  onclick="selectTips(15)"
+                />
+                <input
+                  type="button"
+                  class="tipUnClicked"
+                  name="tip"
+                  id="tip20"
+                  value="20%"
+                  onclick="selectTips(20)"
+                />
+                <input
+                  type="button"
+                  class="tipUnClicked"
+                  name="tip"
+                  id="tip50"
+                  value="50%"
+                  onclick="selectTips(50)"
+                />
                 <input
                   type="number"
                   name="tip"
@@ -84,14 +119,15 @@
                 <span class="title">Tip Amount</span> <br />
                 <span class="sub">/ person</span>
               </div>
-              <div id="tipAmount" class="amount">$3.25</div>
+              <div id="tipAmount" class="amount">$0.00</div>
               <div>
                 <span class="title">Total/</span> <br />
                 <span class="sub">person</span>
               </div>
-              <div id="totalAmount" class="amount">$12.03</div>
+              <div id="totalAmount" class="amount">$0.00</div>
             </div>
-            <button id="resetButton">RESET</button>
+            <!-- <button id="resetButton" disabled class="disabled">RESET</button> -->
+            <button id="resetButton" type="button" disabled>RESET</button>
           </div>
         </div>
       </div>
