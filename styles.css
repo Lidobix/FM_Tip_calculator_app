@@ -142,61 +142,7 @@ input[type=number]:focus{
     border:1px solid hsl(172, 67%, 45%);
 
 }
-/* 
 
-#tipSelectors{
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-} */
-
-/* #tipSelectors > div{
-    border: transparent;
-    display: block;
-    background-color: hsl(183, 100%, 15%);
-    border: 1px solid hsl(183, 100%, 15%);
-    color:hsl(0, 0%, 100%);
-    border-radius: 1vw;
-    -webkit-border-radius: 1vw;
-    -moz-border-radius: 1vw;
-    -ms-border-radius: 1vw;
-    -o-border-radius: 1vw;
-    
-}
-
-#tipSelectors > *{
-    
- height: 5vh
-
-} */
-
-
-/* .leftSelector {
-margin: 1vh 1vw 1vh 0;
-
-}
-.rightSelector {
-margin: 1vh 0 1vh 1vw;
-
-} */
-
-/* #tipSelectors > div:hover{
-    color: hsl(183, 100%, 15%);
-    background-color: hsl(172, 67%, 45%);
-    border: 1px solid hsl(172, 67%, 45%);
-} */
-
-
-
-/* input{
-    text-align: right;
-    border: 1px solid hsl(189, 41%, 97%);
-    background-color: hsl(189, 41%, 97%)
-}
-input:hover{
-    border: 1px solid hsl(172, 67%, 45%);
-} */
 
 .color{
 
