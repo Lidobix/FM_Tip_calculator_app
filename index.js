@@ -2,7 +2,9 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const peopleQty = this.getElementById('peopleQty');
   const resetButton = this.getElementById('resetButton');
   const billAmount = this.getElementById('billAmount');
-  let tipClicked = '';
+  const customTip = this.getElementById('customTip');
+
+  const tip = ['', 0];
 
   billAmount.addEventListener('input', () => {
     resetButton.disabled = false;
@@ -12,19 +14,34 @@ window.document.addEventListener('DOMContentLoaded', function () {
     resetButton.disabled = false;
   });
 
+  customTip.addEventListener('click', function () {
+    if (tip[0] != '') {
+      document.getElementById(tip[0]).classList.remove('tipClicked');
+      document.getElementById(tip[0]).classList.add('tipUnClicked');
+    }
+    // customTip.classList.remove('inputUnClicked');
+    // customTip.classList.add('inputClicked');
+    tip[0] = '';
+    tip[1] = '';
+    console.log(tip);
+  });
+
   resetButton.addEventListener('click', () => {
     peopleQty.value = 0;
     billAmount.value = 0;
     resetButton.disabled = true;
   });
 
-  selectTips = function (tip) {
-    if (tipClicked != '') {
-      document.getElementById(tipClicked).classList.remove('tipClicked');
-      document.getElementById(tipClicked).classList.add('tipUnClicked');
+  selectTips = function (id) {
+    if (tip[0] === '') {
+      document.getElementById('tip' + id).classList.add('tipClicked');
     } else {
-      document.getElementById('tip' + tip).classList.add('tipClicked');
+      document.getElementById(tip[0]).classList.remove('tipClicked');
+      document.getElementById(tip[0]).classList.add('tipUnClicked');
+      document.getElementById('tip' + id).classList.add('tipClicked');
     }
-    tipClicked = 'tip' + tip;
+    tip[0] = 'tip' + id;
+    tip[1] = id;
+    console.log(tip);
   };
 });
