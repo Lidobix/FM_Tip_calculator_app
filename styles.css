@@ -1,3 +1,12 @@
+.colors{
+
+background-color:hsl(183, 100%, 15%);
+background-color: hsl(186, 14%, 43%);
+background-color:hsl(184, 14%, 56%);
+background-color: hsl(185, 41%, 84%);
+background-color: hsl(189, 41%, 97%);
+background-color:hsl(0, 0%, 100%);
+}
 *{
     
     font-family: 'Space Mono', monospace;
@@ -143,16 +152,22 @@ input[type=number]:focus{
 
 }
 
+#errorMessage{
 
-.color{
-
-background-color:hsl(183, 100%, 15%);
-background-color: hsl(186, 14%, 43%);
-background-color:hsl(184, 14%, 56%);
-background-color: hsl(185, 41%, 84%);
-background-color: hsl(189, 41%, 97%);
-background-color:hsl(0, 0%, 100%);
+    /* position: absolute; */
+    /* right: 0; */
 }
+
+
+#boxMessage{
+    display:flex;
+    justify-content: space-between;
+}
+
+.errorZeroPeople{
+    
+}
+
 
 #resultWindowContent{
  background-color: hsl(183, 100%, 15%);

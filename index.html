@@ -28,8 +28,13 @@
       <div id="calculatorContent">
         <div id="formWindow">
           <form action="calculTip" method="post">
+            <!-- <div id="bill"> -->
             <fieldset id="bill">
               <legend>Bill</legend>
+              <div>
+                <!-- <div>Bill</div> -->
+                <!-- <div id="errorMessage">cuicui</div> -->
+              </div>
               <input
                 type="number"
                 name="bill"
@@ -42,6 +47,7 @@
                 class="notCustomInput inputUnClicked"
               />
             </fieldset>
+            <!-- </div> -->
 
             <fieldset id="tipSelect">
               <legend>Select Tip %</legend>
@@ -102,9 +108,14 @@
                 ></textarea>-->
               </div>
             </fieldset>
-            <fieldset>
-              <legend>text of People</legend>
 
+            <div>
+              <!-- <fieldset> -->
+              <!-- <legend>Number of People</legend> -->
+              <div id="boxMessage">
+                <div>Number of People</div>
+                <div class="errorZeroPeople">Can't be zero</div>
+              </div>
               <input
                 type="number"
                 name="peopleQty"
@@ -114,9 +125,10 @@
                   background-image: url(./images/icon-person.svg);
                   background-repeat: no-repeat;
                 "
-                class="notCustomInput inputUnClicked"
+                class="notCustomInput inputUnClicked errorZeroPeople"
               />
-            </fieldset>
+              <!-- </fieldset> -->
+            </div>
           </form>
         </div>
 
