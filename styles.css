@@ -208,9 +208,11 @@ input[type=number]:focus{
 }
 #tipAmount{
     text-align: right;
+    overflow: hidden;
 }
 #totalAmount{
     text-align: right;
+    overflow: hidden;
 
 }
 

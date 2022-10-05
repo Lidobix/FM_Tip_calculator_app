@@ -1,4 +1,5 @@
 window.document.addEventListener('DOMContentLoaded', function () {
+  // DECLARATION DES CONSTANTES:
   const peopleQty = this.getElementById('peopleQty');
   const resetButton = this.getElementById('resetButton');
   const billAmount = this.getElementById('billAmount');
@@ -6,107 +7,126 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const peopleLegend = this.getElementById('peopleLegend');
   const tipAmount = this.getElementById('tipAmount');
   const totalAmount = this.getElementById('totalAmount');
+  const inputs = {};
+  initInputs();
+  createErrorMessage();
 
-  const inputs = {
-    bill: 0,
-    tip: ['', 0],
-    people: 0,
-    error: false,
-    errorMessage: '',
-  };
-
-  (function createErrorMessage() {
-    const errorElement = document.createElement('div');
-    errorElement.innerText = "Can't be zero";
-    errorElement.classList.add('errorZeroPeople');
-    inputs.errorMessage = errorElement;
-    // console.log(inputs);
-  })();
-
-  // billAmount.addEventListener('input', () => {
-  //   resetButton.disabled = false;
-  // });
-
-  // peopleQty.addEventListener('input', function () {
-  //   resetButton.disabled = false;
-  // });
+  // GESTION DES ENTREES DANS LES INPUTS:
   billAmount.addEventListener('input', () => {
     inputs.bill = billAmount.value;
-    console.log(inputs);
     updateResult();
   });
 
-  customTip.addEventListener('click', function () {
-    if (inputs.tip[0] != '') {
-      document.getElementById(inputs.tip[0]).classList.remove('tipClicked');
-      document.getElementById(inputs.tip[0]).classList.add('tipUnClicked');
+  customTip.addEventListener('input', () => {
+    if (peopleQty.value == 0) {
+      generateError();
     }
-    // customTip.classList.remove('inputUnClicked');
-    // customTip.classList.add('inputClicked');
-    inputs.tip[0] = '';
-    inputs.tip[1] = '';
-    console.log(inputs);
+    inputs.tip[1] = customTip.value;
+    updateResult();
   });
 
   peopleQty.addEventListener('input', () => {
-    // console.log(inputs);
     if (peopleQty.value != 0 && inputs.error) {
       deleteError();
-      inputs.error = false;
     }
     if (peopleQty.value == 0) {
       generateError();
-      inputs.error = true;
     }
     inputs.people = peopleQty.value;
     updateResult();
   });
 
-  resetButton.addEventListener('click', () => {
-    peopleQty.value = 0;
-    billAmount.value = 0;
-    resetButton.disabled = true;
+  // GESTION DES CLICS:
+  customTip.addEventListener('click', function () {
+    if (inputs.tip[0] != '') {
+      unclickChangeDesign(inputs.tip[0]);
+    }
+
+    inputs.tip = ['', 0];
   });
 
   selectTips = function (id) {
-    if (inputs.tip[0] === '') {
-      document.getElementById('tip' + id).classList.add('tipClicked');
-    } else {
-      document.getElementById(inputs.tip[0]).classList.remove('tipClicked');
-      document.getElementById(inputs.tip[0]).classList.add('tipUnClicked');
-      document.getElementById('tip' + id).classList.add('tipClicked');
+    document.getElementById('tip' + id).classList.add('tipClicked');
+
+    if (inputs.tip[0] != '') {
+      unclickChangeDesign(inputs.tip[0]);
     }
-    // inputs.tip[0] = 'tip' + id;
-    // inputs.tip[1] = id;
-    inputs.tip = ['tip' + id, id * 0.01];
+
+    inputs.tip = ['tip' + id, id];
+
     if (inputs.people === 0) {
       generateError();
-      inputs.error = true;
     }
-    updateResult();
     console.log(inputs);
+    updateResult();
   };
+
+  resetButton.addEventListener('click', () => {
+    if (inputs.tip[0] != '') {
+      unclickChangeDesign(inputs.tip[0]);
+    }
+    if (inputs.error) {
+      deleteError();
+    }
+    resetButton.disabled = true;
+    initInputs();
+
+    console.log(inputs);
+  });
+
+  // DECLARATION DE FONCTIONS UTILITAIRES:
+  function initInputs() {
+    inputs.tip = ['', 0];
+    inputs.people = 0;
+    inputs.bill = 0;
+    inputs.error = false;
+    inputs.tipPerPers = 0;
+    inputs.totalPerPers = 0;
+    peopleQty.value = '';
+    billAmount.value = '';
+    customTip.value = '';
+    tipAmount.innerText = `$0.00`;
+    totalAmount.innerText = `$0.00`;
+  }
+
+  function createErrorMessage() {
+    const errorElement = document.createElement('div');
+    errorElement.innerText = "Can't be zero";
+    errorElement.classList.add('errorZeroPeople');
+    inputs.errorMessage = errorElement;
+  }
 
   function generateError() {
     peopleLegend.appendChild(inputs.errorMessage);
+    inputs.error = true;
   }
 
   function deleteError() {
     peopleLegend.removeChild(inputs.errorMessage);
+    inputs.error = false;
   }
 
   function updateResult() {
-    if (inputs.tip != 0 && inputs.people != 0) {
-      tipAmount.innerText =
-        '$' +
-        Math.floor(((inputs.bill * inputs.tip[1]) / inputs.people) * 100) / 100;
+    resetButton.disabled = false;
 
-      totalAmount.innerText =
-        '$' +
+    if (inputs.people != 0) {
+      inputs.tipPerPers =
         Math.floor(
-          ((inputs.bill * (1 + inputs.tip[1])) / inputs.people) * 100
-        ) /
-          100;
+          ((inputs.bill * inputs.tip[1] * 0.01) / inputs.people) * 100
+        ) / 100;
+
+      inputs.totalPerPers =
+        Math.floor(
+          ((inputs.bill * (1 + inputs.tip[1] * 0.01)) / inputs.people) * 100
+        ) / 100;
     }
+
+    tipAmount.innerText = `$${inputs.tipPerPers}`;
+    totalAmount.innerText = `$${inputs.totalPerPers}`;
+  }
+
+  function unclickChangeDesign(button) {
+    document.getElementById(button).classList.remove('tipClicked');
+    document.getElementById(button).classList.add('tipUnClicked');
   }
 });
