@@ -47,7 +47,7 @@ margin: 5vh 0 5vh 0 ;
 
 #calculatorContent{
 
-    padding:0 4vw 0 4vw
+    padding:5vh 4vw 0 4vw
 }
 
 #paramWindow{
@@ -102,7 +102,7 @@ fieldset{
     height: 7vh;
     width:47%;
     
-    font-size: 1.3em;
+    font-size: 1.5em;
     margin-bottom: 6%;
 }
 
@@ -127,7 +127,8 @@ input[type=number]{
     text-align: right;
     display: block;
     background-color:  hsl(189, 41%, 97%);
-    -moz-appearance:textfield ;    
+    -moz-appearance:textfield ;   
+    
 
 }
 
