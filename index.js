@@ -7,7 +7,9 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const peopleLegend = this.getElementById('peopleLegend');
   const tipAmount = this.getElementById('tipAmount');
   const totalAmount = this.getElementById('totalAmount');
+  const styleLegend = window.getComputedStyle(peopleLegend);
   const inputs = {};
+  console.log(styleLegend);
   initInputs();
   createErrorMessage();
 
