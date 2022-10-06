@@ -67,13 +67,9 @@ margin: 5vh 0 5vh 0 ;
 }
 
 fieldset{
-/* position: relative; */
-/* width: 100%; */
+
     border: none;
-    /* padding-left: 0;
-    padding-right: 0;
-    margin-right: 0;
-    margin-left: 0; */
+
 }
 
 .notCustomInput{
@@ -84,15 +80,7 @@ fieldset{
 
 #inputContainer{
 
-    /* display: grid;
-    grid-template-columns: 50% 50%; */
 
-    /* column-gap: 4vw; */
-    /* row-gap: 4vh; */
-
-
-    /* padding-left: 4px;
-    padding-right: 4px; */
     
     display: flex;
     flex-wrap: wrap;
@@ -146,21 +134,16 @@ input[type=number]{
 
 input[type=number]:focus{
 
-    /* border:1px solid hsl(172, 67%, 45%); */
-    /* outline: auto; */
-    
-/* border:none; */
+
     outline:2px solid hsl(172, 67%, 45%);
 }
 
 
 .inputUnClicked{
-    /* outline: 1px dashed red ; */
-    /* outline-color: transparent; */
+  
     
     border: 1px solid transparent;
-    
-    /* outline:1px solid transparent; */
+  
 }
 
 
@@ -171,11 +154,6 @@ input[type=number]:focus{
 
 }
 
-#errorMessage{
-
-    /* position: absolute; */
-    /* right: 0; */
-}
 
 
 #boxMessage{
@@ -184,15 +162,13 @@ input[type=number]:focus{
 }
 
 #peopleLegend{
-    /* position: absolute; */
+  
     display:inline-flex;
     width: 100%;
-    /* gap:100px; */
+ 
     justify-content: space-between;
 }
-/* span{
-    display: block;
-} */
+
 
 .errorZeroPeople{
 
@@ -236,7 +212,7 @@ input[type=number]:focus{
 
 
 
-#resultWindowContent> button{ /*grid-column: 1/3; grid-row: 3; */       
+#resultWindowContent> button{  
     background-color: hsl(172, 67%, 45%); 
     border:1px solid hsl(172, 67%, 45%);
     width: 100%; 
