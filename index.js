@@ -1,67 +1,90 @@
+import { Calculation } from './calculation.js';
+
+const calculation = new Calculation();
+
+export const inputs = {};
+export const pageElements = {};
+
+export function generateError() {
+  const errorElement = document.createElement('div');
+  errorElement.innerText = "Can't be zero";
+  pageElements.peopleLegend.appendChild(errorElement);
+  calculation.error = true;
+}
+
+export function deleteError() {
+  //   peopleLegend.removeChild(inputs.errorMessage);
+  calculation.error = false;
+}
+
+function selectTips(id) {
+  console.log('selectTip');
+  document.getElementById('tip' + id).classList.add('tipClicked');
+
+  if (inputs.tip[0] != '') {
+    unclickChangeDesign(inputs.tip[0]);
+  }
+
+  inputs.tip = ['tip' + id, id];
+
+  if (inputs.people === 0) {
+    calculation.generateError();
+  }
+  console.log(inputs);
+  updateResult();
+}
+
+// export const pageElements = {
+//   peopleQty: document.getElementById('peopleQty'),
+//   // resetButton: document.getElementById('resetButton'),
+//   billAmount: document.getElementById('billAmount'),
+//   customTip: document.getElementById('customTip'),
+//   peopleLegend: document.getElementById('peopleLegend'),
+//   // tipAmount: document.getElementById('tipAmount'),
+//   // totalAmount: document.getElementById('totalAmount'),
+//   // styleLegend: window.getComputedStyle(peopleLegend),
+// };
+
 window.document.addEventListener('DOMContentLoaded', function () {
   // DECLARATION DES CONSTANTES:
-  const peopleQty = this.getElementById('peopleQty');
-  const resetButton = this.getElementById('resetButton');
-  const billAmount = this.getElementById('billAmount');
-  const customTip = this.getElementById('customTip');
-  const peopleLegend = this.getElementById('peopleLegend');
-  const tipAmount = this.getElementById('tipAmount');
-  const totalAmount = this.getElementById('totalAmount');
-  const styleLegend = window.getComputedStyle(peopleLegend);
-  const inputs = {};
-  console.log(styleLegend);
+  // const pageElements = {
+  pageElements.peopleQty = document.getElementById('peopleQty');
+  // resetButton: document.getElementById('resetButton'),
+  pageElements.billAmount = document.getElementById('billAmount');
+  pageElements.customTip = document.getElementById('customTip');
+  pageElements.peopleLegend = document.getElementById('peopleLegend');
+  pageElements.tipAmount = document.getElementById('tipAmount');
+  pageElements.totalAmount = document.getElementById('totalAmount');
+  // styleLegend: window.getComputedStyle(peopleLegend),
+  // };
   initInputs();
-  createErrorMessage();
 
   // GESTION DES ENTREES DANS LES INPUTS:
-  billAmount.addEventListener('input', () => {
-    inputs.bill = billAmount.value;
-    updateResult();
+  pageElements.billAmount.addEventListener('input', (e) => {
+    calculation.billAmount = e.target.value;
+    update();
   });
 
-  customTip.addEventListener('input', () => {
-    if (peopleQty.value == 0) {
-      generateError();
-    }
-    inputs.tip[1] = customTip.value;
-    updateResult();
+  pageElements.customTip.addEventListener('input', (e) => {
+    calculation.tip = e.target.value;
+    // inputs.tip[1] = customTip.value;
+    update();
   });
 
-  peopleQty.addEventListener('input', () => {
-    if (peopleQty.value != 0 && inputs.error) {
-      deleteError();
-    }
-    if (peopleQty.value == 0) {
-      generateError();
-    }
-    inputs.people = peopleQty.value;
-    updateResult();
+  pageElements.peopleQty.addEventListener('input', (e) => {
+    calculation.peopleQty = e.target.value;
+    update();
   });
 
   // GESTION DES CLICS:
   customTip.addEventListener('click', function () {
-    if (inputs.tip[0] != '') {
-      unclickChangeDesign(inputs.tip[0]);
-    }
-
-    inputs.tip = ['', 0];
+    // if (inputs.tip[0] != '') {
+    //   unclickChangeDesign(inputs.tip[0]);
+    // }
+    // inputs.tip = ['', 0];
   });
 
-  selectTips = function (id) {
-    document.getElementById('tip' + id).classList.add('tipClicked');
-
-    if (inputs.tip[0] != '') {
-      unclickChangeDesign(inputs.tip[0]);
-    }
-
-    inputs.tip = ['tip' + id, id];
-
-    if (inputs.people === 0) {
-      generateError();
-    }
-    console.log(inputs);
-    updateResult();
-  };
+  pageElements.selectTips = selectTips;
 
   resetButton.addEventListener('click', () => {
     if (inputs.tip[0] != '') {
@@ -78,54 +101,17 @@ window.document.addEventListener('DOMContentLoaded', function () {
 
   // DECLARATION DE FONCTIONS UTILITAIRES:
   function initInputs() {
-    inputs.tip = ['', 0];
-    inputs.people = 0;
-    inputs.bill = 0;
-    inputs.error = false;
-    inputs.tipPerPers = 0;
-    inputs.totalPerPers = 0;
-    peopleQty.value = '';
-    billAmount.value = '';
-    customTip.value = '';
     tipAmount.innerText = `$0.00`;
     totalAmount.innerText = `$0.00`;
   }
 
-  function createErrorMessage() {
-    const errorElement = document.createElement('div');
-    errorElement.innerText = "Can't be zero";
-    errorElement.classList.add('errorZeroPeople');
-    inputs.errorMessage = errorElement;
+  function update() {
+    calculation.updateResult();
+    pageElements.tipAmount.innerText = `$${calculation.tipPerPers}`;
+    pageElements.totalAmount.innerText = `$${calculation.totalPerPers}`;
   }
 
-  function generateError() {
-    peopleLegend.appendChild(inputs.errorMessage);
-    inputs.error = true;
-  }
-
-  function deleteError() {
-    peopleLegend.removeChild(inputs.errorMessage);
-    inputs.error = false;
-  }
-
-  function updateResult() {
-    resetButton.disabled = false;
-
-    if (inputs.people != 0) {
-      inputs.tipPerPers =
-        Math.floor(
-          ((inputs.bill * inputs.tip[1] * 0.01) / inputs.people) * 100
-        ) / 100;
-
-      inputs.totalPerPers =
-        Math.floor(
-          ((inputs.bill * (1 + inputs.tip[1] * 0.01)) / inputs.people) * 100
-        ) / 100;
-    }
-
-    tipAmount.innerText = `$${inputs.tipPerPers}`;
-    totalAmount.innerText = `$${inputs.totalPerPers}`;
-  }
+  // function updateResult() {
 
   function unclickChangeDesign(button) {
     document.getElementById(button).classList.remove('tipClicked');
