@@ -21,8 +21,11 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const tipButtons = [...document.getElementsByClassName('tip')];
   // styleLegend: window.getComputedStyle(peopleLegend),
 
-  initInputs();
-
+  (function reset() {
+    tipAmount.innerText = calculation.init().initTip;
+    totalAmount.innerText = calculation.init().initTotal;
+  })();
+  calculation.init();
   // GESTION DES ENTREES DANS LES INPUTS:
   billAmount.addEventListener('input', (e) => {
     calculation.billAmount = e.target.value;
@@ -41,10 +44,7 @@ window.document.addEventListener('DOMContentLoaded', function () {
 
   // GESTION DES CLICS:
   customTip.addEventListener('click', function () {
-    tipButtons.forEach((button) => {
-      button.classList.remove('tipClicked');
-      button.classList.add('tipUnClicked');
-    });
+    clickDesign();
   });
 
   // [...tipButtons].forEach((button) => {
@@ -65,15 +65,14 @@ window.document.addEventListener('DOMContentLoaded', function () {
     }
     resetButton.disabled = true;
     initInputs();
-
     console.log(inputs);
   });
 
   // DECLARATION DE FONCTIONS UTILITAIRES:
-  function initInputs() {
-    tipAmount.innerText = `$0.00`;
-    totalAmount.innerText = `$0.00`;
-  }
+  // function initInputs() {
+  //   tipAmount.innerText = `$0.00`;
+  //   totalAmount.innerText = `$0.00`;
+  // }
 
   function update() {
     calculation.calculate();
@@ -93,6 +92,6 @@ window.document.addEventListener('DOMContentLoaded', function () {
       button.classList.remove('tipClicked');
       button.classList.add('tipUnClicked');
     });
-    document.getElementById(idButton).classList.add('tipClicked');
+    idButton && document.getElementById(idButton).classList.add('tipClicked');
   }
 });

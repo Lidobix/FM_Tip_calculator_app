@@ -8,11 +8,14 @@ export class Calculation {
     this.totalPerPers = 0;
     this.error = false;
   }
+  init() {
+    return { initTip: `$0.00`, initTotal: `$0.00` };
+  }
   calculate() {
     if (this.peopleQty == 0) {
       this.error = true;
-      this.tipPerPers = 0;
-      this.totalPerPers = 0;
+      this.tipPerPers = `0.00`;
+      this.totalPerPers = `0.00`;
     } else {
       this.error = false;
       this.tipPerPers =
