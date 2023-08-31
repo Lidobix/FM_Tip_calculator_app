@@ -5,29 +5,8 @@ const calculation = new Calculation();
 export const inputs = {};
 export const pageElements = {};
 
-function errorMessage() {
-  const errorElement = document.createElement('div');
-  errorElement.innerText = "Can't be zero";
-  return errorElement;
-}
-
-// export function generateError() {
-//   // const errorElement = document.createElement('div');
-//   // errorElement.innerText = "Can't be zero";
-//   peopleLegend.appendChild(errorMessage());
-//   calculation.error = true;
-// }
-
-// export function deleteError() {
-//   peopleLegend.removeChild(errorMessage());
-//   calculation.error = false;
-// }
-
-// export function showError(isError) {
-//   isError
-//     ? peopleLegend.appendChild(errorMessage())
-//     : peopleLegend.removeChild(errorMessage());
-// }
+const errorElement = document.createElement('div');
+errorElement.innerText = "Can't be zero";
 
 window.document.addEventListener('DOMContentLoaded', function () {
   // DECLARATION DES CONSTANTES:
@@ -98,11 +77,12 @@ window.document.addEventListener('DOMContentLoaded', function () {
 
   function update() {
     calculation.calculate();
-    console.log(peopleLegend);
-    console.log(errorMessage());
+
     calculation.error
-      ? peopleLegend.appendChild(errorMessage())
-      : peopleLegend.removeChild(errorMessage());
+      ? peopleLegend.appendChild(errorElement)
+      : peopleLegend.contains(errorElement)
+      ? peopleLegend.removeChild(errorElement)
+      : null;
 
     tipAmount.innerText = `$${calculation.tipPerPers}`;
     totalAmount.innerText = `$${calculation.totalPerPers}`;
