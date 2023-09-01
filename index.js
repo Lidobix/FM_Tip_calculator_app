@@ -12,7 +12,7 @@ window.document.addEventListener('DOMContentLoaded', function () {
   // DECLARATION DES CONSTANTES:
 
   const peopleQty = document.getElementById('peopleQty');
-  // resetButton: document.getElementById('resetButton'),
+  const resetButton = document.getElementById('resetButton');
   const billAmount = document.getElementById('billAmount');
   const customTip = document.getElementById('customTip');
   const peopleLegend = document.getElementById('peopleLegend');
@@ -22,10 +22,10 @@ window.document.addEventListener('DOMContentLoaded', function () {
   // styleLegend: window.getComputedStyle(peopleLegend),
 
   (function reset() {
-    tipAmount.innerText = calculation.init().initTip;
-    totalAmount.innerText = calculation.init().initTotal;
+    tipAmount.innerText = calculation.reset().initTip;
+    totalAmount.innerText = calculation.reset().initTotal;
   })();
-  calculation.init();
+  calculation.reset();
   // GESTION DES ENTREES DANS LES INPUTS:
   billAmount.addEventListener('input', (e) => {
     calculation.billAmount = e.target.value;
@@ -57,15 +57,21 @@ window.document.addEventListener('DOMContentLoaded', function () {
   });
 
   resetButton.addEventListener('click', () => {
-    if (inputs.tip[0] != '') {
-      unclickChangeDesign(inputs.tip[0]);
-    }
-    if (inputs.error) {
-      deleteError();
-    }
-    resetButton.disabled = true;
-    initInputs();
-    console.log(inputs);
+    // if (inputs.tip[0] != '') {
+    //   unclickChangeDesign(inputs.tip[0]);
+    // }
+    // if (inputs.error) {
+    //   deleteError();8520
+    // initInputs();
+    billAmount.value = '';
+    peopleQty.value = '';
+    customTip.value = '';
+
+    calculation.reset();
+    clickDesign();
+    update(true);
+
+    // console.log(inputs);
   });
 
   // DECLARATION DE FONCTIONS UTILITAIRES:
@@ -74,14 +80,19 @@ window.document.addEventListener('DOMContentLoaded', function () {
   //   totalAmount.innerText = `$0.00`;
   // }
 
-  function update() {
+  function update(isReset) {
+    // console.log('Reset', isReset);
     calculation.calculate();
+    //  ? (resetButton.disabled = true) : (resetButton.disabled = false);
+    resetButton.disabled = isReset;
 
-    calculation.error
-      ? peopleLegend.appendChild(errorElement)
-      : peopleLegend.contains(errorElement)
-      ? peopleLegend.removeChild(errorElement)
-      : null;
+    if (calculation.error && !isReset) {
+      peopleLegend.appendChild(errorElement);
+    } else {
+      peopleLegend.contains(errorElement)
+        ? peopleLegend.removeChild(errorElement)
+        : null;
+    }
 
     tipAmount.innerText = `$${calculation.tipPerPers}`;
     totalAmount.innerText = `$${calculation.totalPerPers}`;

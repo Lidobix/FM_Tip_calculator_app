@@ -8,7 +8,8 @@ export class Calculation {
     this.totalPerPers = 0;
     this.error = false;
   }
-  init() {
+  reset() {
+    this.error = false;
     return { initTip: `$0.00`, initTotal: `$0.00` };
   }
   calculate() {
