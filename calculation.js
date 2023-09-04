@@ -10,7 +10,8 @@ export class Calculation {
   }
   reset() {
     this.error = false;
-    return { initTip: `$0.00`, initTotal: `$0.00` };
+    this.tipPerPers = `$0.00`;
+    this.totalPerPers = `$0.00`;
   }
   calculate() {
     if (this.peopleQty == 0) {

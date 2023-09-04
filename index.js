@@ -19,13 +19,24 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const tipAmount = document.getElementById('tipAmount');
   const totalAmount = document.getElementById('totalAmount');
   const tipButtons = [...document.getElementsByClassName('tip')];
+  reset();
   // styleLegend: window.getComputedStyle(peopleLegend),
 
-  (function reset() {
-    tipAmount.innerText = calculation.reset().initTip;
-    totalAmount.innerText = calculation.reset().initTotal;
-  })();
-  calculation.reset();
+  // (function reset() {
+  //   tipAmount.innerText = calculation.reset().initTip;
+  //   totalAmount.innerText = calculation.reset().initTotal;
+  // })();
+  function reset() {
+    billAmount.value = '';
+    peopleQty.value = '';
+    customTip.value = '';
+
+    calculation.reset();
+
+    clickDesign();
+    update(true);
+  }
+
   // GESTION DES ENTREES DANS LES INPUTS:
   billAmount.addEventListener('input', (e) => {
     calculation.billAmount = e.target.value;
@@ -57,32 +68,14 @@ window.document.addEventListener('DOMContentLoaded', function () {
   });
 
   resetButton.addEventListener('click', () => {
-    // if (inputs.tip[0] != '') {
-    //   unclickChangeDesign(inputs.tip[0]);
-    // }
-    // if (inputs.error) {
-    //   deleteError();8520
-    // initInputs();
-    billAmount.value = '';
-    peopleQty.value = '';
-    customTip.value = '';
-
-    calculation.reset();
-    clickDesign();
-    update(true);
-
-    // console.log(inputs);
+    reset();
   });
 
   // DECLARATION DE FONCTIONS UTILITAIRES:
-  // function initInputs() {
-  //   tipAmount.innerText = `$0.00`;
-  //   totalAmount.innerText = `$0.00`;
-  // }
 
   function update(isReset) {
     // console.log('Reset', isReset);
-    calculation.calculate();
+    !isReset && calculation.calculate();
     //  ? (resetButton.disabled = true) : (resetButton.disabled = false);
     resetButton.disabled = isReset;
 
