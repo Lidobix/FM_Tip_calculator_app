@@ -78,7 +78,7 @@ padding-left: 0;
     text-align: right;
     background-repeat: no-repeat;
     background-position: center;
-    background-position-x: 6%;
+    background-position-x: 3%;
 }
 
 
@@ -250,23 +250,3 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
-.input-icon {
-    position: relative;
-  }
-  
-  .input-icon > i {
-    position: absolute;
-    display: block;
-    transform: translate(0, -50%);
-    top: 50%;
-    pointer-events: none;
-    width: 25px;
-    text-align: center;
-      font-style: normal;
-  }
-  
-  .input-icon > input {
-    padding-left: 25px;
-      padding-right: 0;
-  }
