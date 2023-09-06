@@ -183,8 +183,19 @@ input[type=number]:hover{
 
 
 .errorZeroPeople{
-    color:hsl(13,39.9%,62.2%);
+    color:hsl(13,39.9%,62.2%);  
 }
+
+
+
+.errorZeroPeopleInput{
+    outline:2px solid hsl(13,39.9%,62.2%);
+}
+
+/* .errorZeroPeopleInput:hover{
+    outline:2px solid hsl(13,39.9%,62.2%);
+} */
+
 
 #resultWindowContent{
  background-color: hsl(183, 100%, 15%);

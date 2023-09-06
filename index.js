@@ -7,6 +7,7 @@ export const pageElements = {};
 
 const errorElement = document.createElement('div');
 errorElement.innerText = "Can't be zero";
+errorElement.classList.add('errorZeroPeople');
 
 window.document.addEventListener('DOMContentLoaded', function () {
   // DECLARATION DES CONSTANTES:
@@ -74,17 +75,18 @@ window.document.addEventListener('DOMContentLoaded', function () {
   // DECLARATION DE FONCTIONS UTILITAIRES:
 
   function update(isReset) {
-    // console.log('Reset', isReset);
     !isReset && calculation.calculate();
     //  ? (resetButton.disabled = true) : (resetButton.disabled = false);
     resetButton.disabled = isReset;
 
     if (calculation.error && !isReset) {
       peopleLegend.appendChild(errorElement);
+      peopleQty.classList.add('errorZeroPeopleInput');
     } else {
-      peopleLegend.contains(errorElement)
-        ? peopleLegend.removeChild(errorElement)
-        : null;
+      if (peopleLegend.contains(errorElement)) {
+        peopleLegend.removeChild(errorElement);
+        peopleQty.classList.remove('errorZeroPeopleInput');
+      }
     }
 
     tipAmount.innerText = `$${calculation.tipPerPers}`;
