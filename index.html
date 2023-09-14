@@ -30,16 +30,12 @@
           <form action="calculTip" method="post">
             <fieldset id="bill">
               <legend>Bill</legend>
-              <!-- <div></div> -->
               <input
                 type="number"
                 name="bill"
                 id="billAmount"
                 placeholder="0"
-                style="
-                  background-image: url(./images/icon-dollar.svg);
-                  background-repeat: no-repeat;
-                "
+                style="background-image: url(./images/icon-dollar.svg)"
                 class="notCustomInput inputUnClicked"
               />
             </fieldset>
@@ -49,43 +45,38 @@
               <div id="inputContainer">
                 <input
                   type="button"
-                  class="tipUnClicked"
+                  class="tipUnClicked tip"
                   name="tip"
                   id="tip5"
                   value="5%"
-                  onclick="selectTips(5, 'tip5')"
                 />
                 <input
                   type="button"
-                  class="tipUnClicked"
+                  class="tipUnClicked tip"
                   name="tip"
                   id="tip10"
                   value="10%"
-                  onclick="selectTips(10)"
                 />
                 <input
                   type="button"
-                  class="tipUnClicked"
+                  class="tipUnClicked tip"
                   name="tip"
                   id="tip15"
                   value="15%"
-                  onclick="selectTips(15)"
                 />
                 <input
                   type="button"
-                  class="tipUnClicked"
+                  class="tipUnClicked tip"
                   name="tip"
                   id="tip20"
                   value="20%"
-                  onclick="selectTips(20)"
                 />
                 <input
                   type="button"
-                  class="tipUnClicked"
+                  class="tipUnClicked tip"
                   name="tip"
                   id="tip50"
                   value="50%"
-                  onclick="selectTips(50)"
                 />
                 <input
                   type="number"
@@ -108,11 +99,8 @@
                   name="peopleQty"
                   id="peopleQty"
                   placeholder="0"
-                  style="
-                    background-image: url(./images/icon-person.svg);
-                    background-repeat: no-repeat;
-                  "
-                  class="notCustomInput inputUnClicked errorZeroPeople"
+                  style="background-image: url(./images/icon-person.svg)"
+                  class="notCustomInput inputUnClicked"
                 />
               </fieldset>
             </div>
@@ -146,10 +134,10 @@
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
           >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
+        >. Coded by <a href="#">Lidobix</a>.
       </div>
     </footer>
 
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

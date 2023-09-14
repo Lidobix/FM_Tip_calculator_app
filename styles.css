@@ -47,13 +47,10 @@ margin: 5vh 0 5vh 0 ;
 
 #calculatorContent{
 
-    padding:5vh 4vw 0 4vw
+    padding:5vh 9vw 0 9vw
 }
 
-#paramWindow{
 
-    border: 1px solid black;
-}
 
 #calculator{
     display: flex;
@@ -69,41 +66,53 @@ margin: 5vh 0 5vh 0 ;
 fieldset{
 
     border: none;
+margin-left: 0;
+margin-right: 0;
+padding-right: 0;
+padding-left: 0;
 
 }
 
 .notCustomInput{
     width:100%;
     text-align: right;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 3%;
 }
 
 
-#inputContainer{
-
-
-    
+#inputContainer{   
     display: flex;
     flex-wrap: wrap;
-
     justify-content: space-between;
-
 }
 
 #inputContainer > input{
 
     padding:0;
-
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 
-    height: 7vh;
-    width:47%;
+    height: auto;
+    
+    
+    
+    flex-basis:calc(47% - 8px);
+    
     
     font-size: 1.5em;
-    margin-bottom: 6%;
+    margin: 0 4px 6% 4px 
+    
+
+}
+#tipSelect{
+
+    /* padding-left: 2px;
+    padding-right: 2px; */
 }
 
 
@@ -126,28 +135,30 @@ fieldset{
 input[type=number]{
     text-align: right;
     display: block;
-    background-color:  hsl(189, 41%, 97%);
+    /* background-color:  hsl(189, 41%, 97%); */
+    background-color:hsl(193, 52%, 96%);
     -moz-appearance:textfield ;   
     
+    padding:3px;
+    margin: 0 2px 0 2px ;
+    width: calc(100% - 12px);
+    font-size: 1.5em;
 
 }
 
 
 input[type=number]:focus{
+    outline:2px solid hsl(172, 67%, 45%);
+}
 
-
+input[type=number]:hover{
     outline:2px solid hsl(172, 67%, 45%);
 }
 
 
 .inputUnClicked{
-  
-    
     border: 1px solid transparent;
-  
 }
-
-
 
 .inputClicked{
     outline:none;
@@ -172,9 +183,19 @@ input[type=number]:focus{
 
 
 .errorZeroPeople{
-
-    color:hsl(13,39.9%,62.2%);
+    color:hsl(13,39.9%,62.2%);  
 }
+
+
+
+.errorZeroPeopleInput{
+    outline:2px solid hsl(13,39.9%,62.2%);
+}
+
+/* .errorZeroPeopleInput:hover{
+    outline:2px solid hsl(13,39.9%,62.2%);
+} */
+
 
 #resultWindowContent{
  background-color: hsl(183, 100%, 15%);
@@ -228,3 +249,15 @@ input[type=number]:focus{
 #resetButton:disabled{ 
     background-color:  hsl(183, 80%, 23%);
     border: 1px solid  hsl(183, 80%, 23%);}
+
+
+    #resetButton:hover{
+        background-color: 'red'; 
+    }
+
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
