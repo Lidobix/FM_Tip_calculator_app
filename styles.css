@@ -1,27 +1,27 @@
-.colors{
-
-background-color:hsl(183, 100%, 15%);
-background-color: hsl(186, 14%, 43%);
-background-color:hsl(184, 14%, 56%);
-background-color: hsl(185, 41%, 84%);
-background-color: hsl(189, 41%, 97%);
-background-color:hsl(0, 0%, 100%);
-background-color:hsl(13,39.9%,62.2%);
-}
 *{
     
     font-family: 'Space Mono', monospace;
-    /* margin:0;
-    padding:0; */
+
+    --blue_dark: #00494d;
+    --blue_strong:#0c656a;
+    --blue_light:#c5e4e7;
+    --grey : #7f9c9f;
+    --blue_very_light:	#eff8fa;
+    --white: #ffffff;
+    --red_light: #c58978;
+    --turquoise: #26c0ab;
+    --turquoise_light: #9FE8DF;
+
 }
 
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
 
 html {
-    background-color: hsl(185, 41%, 84%);
-    height: 100%;
+    background-color: var(--blue_light);
+    height: 100%
   }
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -55,7 +55,7 @@ margin: 5vh 0 5vh 0 ;
 #calculator{
     display: flex;
     flex-direction: column;
-    background-color: hsl(0, 0%, 100%);
+    background-color: var(--white);
     border-radius: 30px 30px 0 0;
     -webkit-border-radius: 30px 30px 0 0;
     -moz-border-radius: 30px 30px 0 0;
@@ -73,14 +73,7 @@ padding-left: 0;
 
 }
 
-.notCustomInput{
-    width:100%;
-    text-align: right;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: 3%;
-}
-
+/* /////////////////////////////// TIPS /////////////////////////////// */
 
 #inputContainer{   
     display: flex;
@@ -96,23 +89,11 @@ padding-left: 0;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-
     height: auto;
-    
-    
-    
     flex-basis:calc(47% - 8px);
-    
-    
     font-size: 1.5em;
     margin: 0 4px 6% 4px 
     
-
-}
-#tipSelect{
-
-    /* padding-left: 2px;
-    padding-right: 2px; */
 }
 
 
@@ -120,23 +101,47 @@ padding-left: 0;
     text-align: center;
 }
 
-.tipUnClicked{
-    border:1px solid  hsl(183, 100%, 15%);
-    background-color: hsl(183, 100%, 15%);
-    outline:2px solid hsl(183, 100%, 15%);
-    color:white;
+
+.notClickedTip{
+
+
+    border:1px solid  var(--blue_dark);
+    /* background-color: hsl(183, 100%, 15%); */
+    background-color: var(--blue_dark);
+    outline:2px solid var(--blue_dark);
+    color:var(--white);
 }
+
+.notClickedTip:hover{
+    background-color: var(--turquoise_light);
+    outline:2px solid var(--turquoise_light);
+    color:var(--blue_dark);
+}
+
+
 .tipClicked{
-    background-color: hsl(172, 67%, 45%); 
-    border:1px solid hsl(172, 67%, 45%);
-    outline:2px solid hsl(172, 67%, 45%);
-    color: hsl(183, 100%, 15%);
+    background-color: var(--turquoise);
+    border:1px solid var(--turquoise);
+    outline:2px solid hvar(--turquoise);
+    color: var(--blue_dark)
 }
+/* ////////////////////////////// RESULTS ////////////////////////////// */
+
+.notCustomInput{
+    width:100%;
+    text-align: right;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 3%;
+}
+
+
 input[type=number]{
     text-align: right;
     display: block;
     /* background-color:  hsl(189, 41%, 97%); */
-    background-color:hsl(193, 52%, 96%);
+    background-color:var(--blue_very_light);
+    /* background-color:var(--blue_light); */
     -moz-appearance:textfield ;   
     
     padding:3px;
@@ -148,23 +153,28 @@ input[type=number]{
 
 
 input[type=number]:focus{
-    outline:2px solid hsl(172, 67%, 45%);
+    outline:2px solid var(--turquoise);
 }
 
 input[type=number]:hover{
-    outline:2px solid hsl(172, 67%, 45%);
+    outline:2px solid var(--turquoise);
 }
 
+/* input[type=number]{
+    outline:2px solid hsl(172, 67%, 45%);
+} */
 
-.inputUnClicked{
+
+
+
+.unClickedInput{
     border: 1px solid transparent;
 }
-
-.inputClicked{
+/* 
+.clickedInput{
     outline:none;
     border:1px solid hsl(172, 67%, 45%);
-
-}
+} */
 
 
 
@@ -183,13 +193,13 @@ input[type=number]:hover{
 
 
 .errorZeroPeople{
-    color:hsl(13,39.9%,62.2%);  
+    color:var(--red_light);  
 }
 
 
 
 .errorZeroPeopleInput{
-    outline:2px solid hsl(13,39.9%,62.2%);
+    outline:2px solid var(--red_light);
 }
 
 /* .errorZeroPeopleInput:hover{
@@ -198,7 +208,7 @@ input[type=number]:hover{
 
 
 #resultWindowContent{
- background-color: hsl(183, 100%, 15%);
+ background-color: var(--blue_dark);
  padding: 3vh;
  border-radius:10px ;
  -webkit-border-radius:10px ;
@@ -213,14 +223,14 @@ input[type=number]:hover{
 }
 
 .amount {
-    color: hsl(172, 67%, 45%);
+    color: var(--turquoise);
     font-size:1.8em;
 }
 .sub {
-    color: hsl(184, 14%, 56%);
+    color: var(--grey)
 }
 .title{
-    color:white;
+    color:var(--white);
 }
 #tipAmount{
     text-align: right;
@@ -235,8 +245,8 @@ input[type=number]:hover{
 
 
 #resultWindowContent> button{  
-    background-color: hsl(172, 67%, 45%); 
-    border:1px solid hsl(172, 67%, 45%);
+    background-color: var(--turquoise);
+    border:1px solid var(--turquoise);
     width: 100%; 
     border-radius:5px ;
      -webkit-border-radius:5px ;
@@ -247,8 +257,9 @@ input[type=number]:hover{
 
 
 #resetButton:disabled{ 
-    background-color:  hsl(183, 80%, 23%);
-    border: 1px solid  hsl(183, 80%, 23%);}
+    background-color:  var(--blue_strong);
+    border: 1px solid  var(--blue_strong);
+}
 
 
     #resetButton:hover{

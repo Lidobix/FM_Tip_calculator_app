@@ -96,8 +96,12 @@ window.document.addEventListener('DOMContentLoaded', function () {
   function clickDesign(idButton) {
     tipButtons.forEach((button) => {
       button.classList.remove('tipClicked');
-      button.classList.add('tipUnClicked');
+      button.classList.add('notClickedTip');
     });
-    idButton && document.getElementById(idButton).classList.add('tipClicked');
+
+    if (idButton) {
+      document.getElementById(idButton).classList.remove('notClickedTip');
+      document.getElementById(idButton).classList.add('tipClicked');
+    }
   }
 });
