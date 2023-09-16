@@ -36,7 +36,7 @@
                 id="billAmount"
                 placeholder="0"
                 style="background-image: url(./images/icon-dollar.svg)"
-                class="notCustomInput unClickedInput"
+                class="customInput unClickedInput"
               />
             </fieldset>
 
@@ -45,35 +45,35 @@
               <div id="inputContainer">
                 <input
                   type="button"
-                  class="notClickedTip tip"
+                  class="tipSelector notClickedTip"
                   name="tip"
                   id="tip5"
                   value="5%"
                 />
                 <input
                   type="button"
-                  class="notClickedTip tip"
+                  class="tipSelector notClickedTip"
                   name="tip"
                   id="tip10"
                   value="10%"
                 />
                 <input
                   type="button"
-                  class="notClickedTip tip"
+                  class="tipSelector notClickedTip"
                   name="tip"
                   id="tip15"
                   value="15%"
                 />
                 <input
                   type="button"
-                  class="notClickedTip tip"
+                  class="tipSelector notClickedTip"
                   name="tip"
                   id="tip20"
                   value="20%"
                 />
                 <input
                   type="button"
-                  class="notClickedTip tip"
+                  class="tipSelector notClickedTip"
                   name="tip"
                   id="tip50"
                   value="50%"
@@ -83,16 +83,14 @@
                   name="tip"
                   id="customTip"
                   placeholder="Custom"
-                  class="unClickedInput"
+                  class="unClickedInput customInput"
                 />
               </div>
             </fieldset>
 
             <div>
               <fieldset>
-                <legend id="peopleLegend">
-                  <div>Number of People</div>
-                </legend>
+                <legend id="peopleLegend">Number of People</legend>
 
                 <input
                   type="number"
@@ -100,7 +98,7 @@
                   id="peopleQty"
                   placeholder="0"
                   style="background-image: url(./images/icon-person.svg)"
-                  class="notCustomInput unClickedInput"
+                  class="customInput unClickedInput"
                 />
               </fieldset>
             </div>
@@ -108,35 +106,23 @@
         </div>
 
         <div id="resultWindow">
-          <div id="resultWindowContent">
-            <div id="display">
-              <div>
-                <span class="title">Tip Amount</span> <br />
-                <span class="sub">/ person</span>
-              </div>
-              <div id="tipAmount" class="amount"></div>
-              <div>
-                <span class="title">Total/</span> <br />
-                <span class="sub">person</span>
-              </div>
-
-              <div id="totalAmount" class="amount"></div>
+          <div id="display">
+            <div>
+              <p class="resultTitle">Tip Amount</p>
+              <p class="resultUnit">/person</p>
             </div>
-
-            <button id="resetButton" type="button" disabled>RESET</button>
+            <div id="tipAmount" class="amount"></div>
+            <div>
+              <p class="resultTitle">Total</p>
+              <p class="resultUnit">/person</p>
+            </div>
+            <div id="totalAmount" class="amount"></div>
           </div>
+
+          <button id="resetButton" type="button" disabled>RESET</button>
         </div>
       </div>
     </div>
-
-    <footer>
-      <div class="attribution">
-        Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-          >Frontend Mentor</a
-        >. Coded by <a href="#">Lidobix</a>.
-      </div>
-    </footer>
 
     <script type="module" src="./index.js"></script>
   </body>

@@ -95,13 +95,13 @@ window.document.addEventListener('DOMContentLoaded', function () {
 
   function clickDesign(idButton) {
     tipButtons.forEach((button) => {
-      button.classList.remove('tipClicked');
+      button.classList.remove('clickedTip');
       button.classList.add('notClickedTip');
     });
 
     if (idButton) {
       document.getElementById(idButton).classList.remove('notClickedTip');
-      document.getElementById(idButton).classList.add('tipClicked');
+      document.getElementById(idButton).classList.add('clickedTip');
     }
   }
 });
