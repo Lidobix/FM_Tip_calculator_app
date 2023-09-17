@@ -19,7 +19,7 @@ window.document.addEventListener('DOMContentLoaded', function () {
   const peopleLegend = document.getElementById('peopleLegend');
   const tipAmount = document.getElementById('tipAmount');
   const totalAmount = document.getElementById('totalAmount');
-  const tipButtons = [...document.getElementsByClassName('tip')];
+  const tipButtons = [...document.getElementsByClassName('tipSelector')];
   reset();
   // styleLegend: window.getComputedStyle(peopleLegend),
 
@@ -81,11 +81,13 @@ window.document.addEventListener('DOMContentLoaded', function () {
 
     if (calculation.error && !isReset) {
       peopleLegend.appendChild(errorElement);
+      // peopleQty.classList.remove('unClickedInput');
       peopleQty.classList.add('errorZeroPeopleInput');
     } else {
       if (peopleLegend.contains(errorElement)) {
         peopleLegend.removeChild(errorElement);
         peopleQty.classList.remove('errorZeroPeopleInput');
+        // peopleQty.classList.add('unClickedInput');
       }
     }
 

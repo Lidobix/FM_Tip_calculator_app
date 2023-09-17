@@ -135,6 +135,7 @@ input[type=number]:hover{
 
 .errorZeroPeople{
     color:var(--red_light);  
+    font-size: 1.2rem;
 }
 .errorZeroPeopleInput{
     outline: 0.2rem solid var(--red_light);
@@ -143,6 +144,12 @@ legend{
     font-size:2rem;
 }
 
+
+#peopleLegend {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
 
 
 #resultWindow{
@@ -224,8 +231,6 @@ p{
     background-position: center;
     background-position-x: 0.3rem;
 }
-
-
 
 
 
