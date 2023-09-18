@@ -1,74 +1,51 @@
-import { Calculation } from './calculation.js';
+import { Calculation } from './class/calculation.js';
+import { Display } from './class/display.js';
 
 const calculation = new Calculation();
+const display = new Display();
 
 export const inputs = {};
 export const pageElements = {};
 
-const errorElement = document.createElement('div');
-errorElement.innerText = "Can't be zero";
-errorElement.classList.add('errorZeroPeople');
-
 window.document.addEventListener('DOMContentLoaded', function () {
-  // DECLARATION DES CONSTANTES:
-
-  const peopleQty = document.getElementById('peopleQty');
-  const resetButton = document.getElementById('resetButton');
-  const billAmount = document.getElementById('billAmount');
-  const customTip = document.getElementById('customTip');
-  const peopleLegend = document.getElementById('peopleLegend');
-  const tipAmount = document.getElementById('tipAmount');
-  const totalAmount = document.getElementById('totalAmount');
-  const tipButtons = [...document.getElementsByClassName('tipSelector')];
   reset();
-  // styleLegend: window.getComputedStyle(peopleLegend),
 
-  // (function reset() {
-  //   tipAmount.innerText = calculation.reset().initTip;
-  //   totalAmount.innerText = calculation.reset().initTotal;
-  // })();
   function reset() {
-    billAmount.value = '';
-    peopleQty.value = '';
-    customTip.value = '';
-
+    display.reset();
     calculation.reset();
-
-    clickDesign();
     update(true);
   }
 
-  // GESTION DES ENTREES DANS LES INPUTS:
-  billAmount.addEventListener('input', (e) => {
-    calculation.billAmount = e.target.value;
-    update();
-  });
-
-  customTip.addEventListener('input', (e) => {
-    calculation.tip = e.target.value;
-    update();
-  });
-
-  peopleQty.addEventListener('input', (e) => {
-    calculation.peopleQty = e.target.value;
-    update();
-  });
-
-  // GESTION DES CLICS:
-  customTip.addEventListener('click', function () {
-    clickDesign();
-  });
-
-  // [...tipButtons].forEach((button) => {
-  tipButtons.forEach((button) => {
+  display.tipButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       calculation.tip = parseFloat(e.target.value);
-      clickDesign(e.target.id);
-      update();
+      display.updateTips(e.target.id);
+      update(false);
     });
   });
 
-  resetButton.addEventListener('click', () => {
+  // GESTION DES ENTREES DANS LES INPUTS:
+  display.billAmount.addEventListener('input', (e) => {
+    calculation.billAmount = e.target.value;
+    update(false);
+  });
+
+  display.customTip.addEventListener('input', (e) => {
+    calculation.tip = e.target.value;
+
+    update(false);
+  });
+
+  display.peopleQty.addEventListener('input', (e) => {
+    calculation.peopleQty = e.target.value;
+    update(false);
+  });
+
+  display.customTip.addEventListener('click', function () {
+    display.updateTips();
+  });
+
+  display.resetButton.addEventListener('click', () => {
     reset();
   });
 
@@ -77,33 +54,17 @@ window.document.addEventListener('DOMContentLoaded', function () {
   function update(isReset) {
     !isReset && calculation.calculate();
     //  ? (resetButton.disabled = true) : (resetButton.disabled = false);
-    resetButton.disabled = isReset;
-
+    display.resetButton.disabled = isReset;
+    // console.log('calculation.error', calculation.error);
+    // console.log('isReset', isReset);
     if (calculation.error && !isReset) {
-      peopleLegend.appendChild(errorElement);
-      // peopleQty.classList.remove('unClickedInput');
-      peopleQty.classList.add('errorZeroPeopleInput');
+      // console.log('ici');
+      display.generateError();
     } else {
-      if (peopleLegend.contains(errorElement)) {
-        peopleLegend.removeChild(errorElement);
-        peopleQty.classList.remove('errorZeroPeopleInput');
-        // peopleQty.classList.add('unClickedInput');
-      }
+      // console.log('là');
+      display.deleteError();
     }
 
-    tipAmount.innerText = `$${calculation.tipPerPers}`;
-    totalAmount.innerText = `$${calculation.totalPerPers}`;
-  }
-
-  function clickDesign(idButton) {
-    tipButtons.forEach((button) => {
-      button.classList.remove('clickedTip');
-      button.classList.add('notClickedTip');
-    });
-
-    if (idButton) {
-      document.getElementById(idButton).classList.remove('notClickedTip');
-      document.getElementById(idButton).classList.add('clickedTip');
-    }
+    display.updateResult(calculation.tipPerPers, calculation.totalPerPers);
   }
 });
